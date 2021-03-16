@@ -1,9 +1,8 @@
-
-def reverse_list(l):
+def reverse_list(elements: list[int]) -> list[int]:
     """
     Reverses order of elements in list l.
     """
-    return None
+    return elements[::-1]
 
 
 def test_reverse_list():
@@ -12,11 +11,12 @@ def test_reverse_list():
 
 # ------------------------------------------------------------------------------
 
-def reverse_string(s):
+
+def reverse_string(characters: str) -> str:
     """
     Reverses order of characters in string s.
     """
-    return None
+    return characters[::-1]
 
 
 def test_reverse_string():
@@ -24,40 +24,50 @@ def test_reverse_string():
 
 
 # ------------------------------------------------------------------------------
+english_vowel = ["a", "e", "i", "o", "u", "y"]
 
-def is_english_vowel(c):
+
+def is_english_vowel(character: str) -> bool:
     """
     Returns True if c is an english vowel
     and False otherwise.
     """
-    return None
+    if character.lower() in english_vowel:
+        return True
+    else:
+        return False
 
 
 def test_is_english_vowel():
-    assert is_english_vowel('a')
-    assert is_english_vowel('e')
-    assert is_english_vowel('i')
-    assert is_english_vowel('o')
-    assert is_english_vowel('u')
-    assert is_english_vowel('y')
-    assert is_english_vowel('A')
-    assert is_english_vowel('E')
-    assert is_english_vowel('I')
-    assert is_english_vowel('O')
-    assert is_english_vowel('U')
-    assert is_english_vowel('Y')
-    assert not is_english_vowel('k')
-    assert not is_english_vowel('z')
-    assert not is_english_vowel('?')
+    assert is_english_vowel("a")
+    assert is_english_vowel("e")
+    assert is_english_vowel("i")
+    assert is_english_vowel("o")
+    assert is_english_vowel("u")
+    assert is_english_vowel("y")
+    assert is_english_vowel("A")
+    assert is_english_vowel("E")
+    assert is_english_vowel("I")
+    assert is_english_vowel("O")
+    assert is_english_vowel("U")
+    assert is_english_vowel("Y")
+    assert not is_english_vowel("k")
+    assert not is_english_vowel("z")
+    assert not is_english_vowel("?")
 
 
 # ------------------------------------------------------------------------------
 
-def count_num_vowels(s):
+
+def count_num_vowels(text: str) -> int:
     """
     Returns the number of vowels in a string s.
     """
-    return None
+    total = 0
+    for char in text:
+        if char.lower() in english_vowel:
+            total += 1
+    return total
 
 
 def test_count_num_vowels():
@@ -75,18 +85,27 @@ def test_count_num_vowels():
 
 # ------------------------------------------------------------------------------
 
-def histogram(l):
+
+def histogram(integers: list[int]) -> str:
     """
     Converts a list of integers into a simple string histogram.
     """
-    return None
+    histogram_text = ""
+    for integer in integers:
+        histogram_text += "#" * integer + "\n"
+
+    if histogram_text:
+        return histogram_text[:-1]
+
+    return histogram_text
 
 
 def test_histogram():
-    assert histogram([2, 5, 1]) == '##\n#####\n#'
+    assert histogram([2, 5, 1]) == "##\n#####\n#"
 
 
 # ------------------------------------------------------------------------------
+
 
 def get_word_lengths(s):
     """
@@ -102,6 +121,7 @@ def test_get_word_lengths():
 
 
 # ------------------------------------------------------------------------------
+
 
 def find_longest_word(s):
     """
@@ -120,6 +140,7 @@ def test_find_longest_word():
 
 # ------------------------------------------------------------------------------
 
+
 def validate_dna(s):
     """
     Return True if the DNA string only contains characters
@@ -129,12 +150,13 @@ def validate_dna(s):
 
 
 def test_validate_dna():
-    assert validate_dna('CCGGAAGAGCTTACTTAGccggaagagcttacttag')
-    assert not validate_dna('xCCGGAAGAGCTTACTTAGccggaagagcttacttag')
-    assert not validate_dna('CCxGGAAGAGCTTACTTAGccggaagagcttacttag')
+    assert validate_dna("CCGGAAGAGCTTACTTAGccggaagagcttacttag")
+    assert not validate_dna("xCCGGAAGAGCTTACTTAGccggaagagcttacttag")
+    assert not validate_dna("CCxGGAAGAGCTTACTTAGccggaagagcttacttag")
 
 
 # ------------------------------------------------------------------------------
+
 
 def base_pair(c):
     """
@@ -146,19 +168,20 @@ def base_pair(c):
 
 
 def test_base_pair():
-    assert base_pair('a') == 't'
-    assert base_pair('t') == 'a'
-    assert base_pair('c') == 'g'
-    assert base_pair('g') == 'c'
-    assert base_pair('A') == 't'
-    assert base_pair('T') == 'a'
-    assert base_pair('C') == 'g'
-    assert base_pair('G') == 'c'
-    assert base_pair('x') == 'unknown'
-    assert base_pair('foo') == 'unknown'
+    assert base_pair("a") == "t"
+    assert base_pair("t") == "a"
+    assert base_pair("c") == "g"
+    assert base_pair("g") == "c"
+    assert base_pair("A") == "t"
+    assert base_pair("T") == "a"
+    assert base_pair("C") == "g"
+    assert base_pair("G") == "c"
+    assert base_pair("x") == "unknown"
+    assert base_pair("foo") == "unknown"
 
 
 # ------------------------------------------------------------------------------
+
 
 def transcribe_dna_to_rna(s):
     """
@@ -169,11 +192,12 @@ def transcribe_dna_to_rna(s):
 
 
 def test_transcribe_dna_to_rna():
-    dna = 'CCGGAAGAGCTTACTTAGccggaagagcttacttag'
-    assert transcribe_dna_to_rna(dna) == 'CCGGAAGAGCUUACUUAGCCGGAAGAGCUUACUUAG'
+    dna = "CCGGAAGAGCTTACTTAGccggaagagcttacttag"
+    assert transcribe_dna_to_rna(dna) == "CCGGAAGAGCUUACUUAGCCGGAAGAGCUUACUUAG"
 
 
 # ------------------------------------------------------------------------------
+
 
 def get_complement(s):
     """
@@ -184,11 +208,12 @@ def get_complement(s):
 
 
 def test_get_complement():
-    assert get_complement('CCGGAAGAGCTTACTTAG') == 'GGCCTTCTCGAATGAATC'
-    assert get_complement('ccggaagagcttacttag') == 'GGCCTTCTCGAATGAATC'
+    assert get_complement("CCGGAAGAGCTTACTTAG") == "GGCCTTCTCGAATGAATC"
+    assert get_complement("ccggaagagcttacttag") == "GGCCTTCTCGAATGAATC"
 
 
 # ------------------------------------------------------------------------------
+
 
 def get_reverse_complement(s):
     """
@@ -199,11 +224,12 @@ def get_reverse_complement(s):
 
 
 def test_get_reverse_complement():
-    assert get_reverse_complement('CCGGAAGAGCTTACTTAG') == 'CTAAGTAAGCTCTTCCGG'
-    assert get_reverse_complement('ccggaagagcttacttag') == 'CTAAGTAAGCTCTTCCGG'
+    assert get_reverse_complement("CCGGAAGAGCTTACTTAG") == "CTAAGTAAGCTCTTCCGG"
+    assert get_reverse_complement("ccggaagagcttacttag") == "CTAAGTAAGCTCTTCCGG"
 
 
 # ------------------------------------------------------------------------------
+
 
 def remove_substring(substring, string):
     """
@@ -213,13 +239,14 @@ def remove_substring(substring, string):
 
 
 def test_remove_substring():
-    assert remove_substring('GAA', 'CCGGAAGAGCTTACTTAG') == 'CCGGAGCTTACTTAG'
-    assert remove_substring('CCG', 'CCGGAAGAGCTTACTTAG') == 'GAAGAGCTTACTTAG'
-    assert remove_substring('TAG', 'CCGGAAGAGCTTACTTAG') == 'CCGGAAGAGCTTACT'
-    assert remove_substring('GAA', 'GAAGAAGAA') == ''
+    assert remove_substring("GAA", "CCGGAAGAGCTTACTTAG") == "CCGGAGCTTACTTAG"
+    assert remove_substring("CCG", "CCGGAAGAGCTTACTTAG") == "GAAGAGCTTACTTAG"
+    assert remove_substring("TAG", "CCGGAAGAGCTTACTTAG") == "CCGGAAGAGCTTACT"
+    assert remove_substring("GAA", "GAAGAAGAA") == ""
 
 
 # ------------------------------------------------------------------------------
+
 
 def get_position_indices(triplet, dna):
     """
@@ -231,11 +258,12 @@ def get_position_indices(triplet, dna):
 
 
 def test_get_position_indices():
-    assert get_position_indices('GAA', 'CCGGAAGAGCTTACTTAG') == [1]
-    assert get_position_indices('GAA', 'CCGGAAGAGCTTACTTAGGAAGAA') == [1, 6, 7]
+    assert get_position_indices("GAA", "CCGGAAGAGCTTACTTAG") == [1]
+    assert get_position_indices("GAA", "CCGGAAGAGCTTACTTAGGAAGAA") == [1, 6, 7]
 
 
 # ------------------------------------------------------------------------------
+
 
 def get_3mer_usage_chart(s):
     """
@@ -250,27 +278,28 @@ def get_3mer_usage_chart(s):
 
 
 def test_get_3mer_usage_chart():
-    s = 'CCGGAAGAGCTTACTTAGGAAGAA'
+    s = "CCGGAAGAGCTTACTTAGGAAGAA"
     result = []
-    result.append(('AAG', 2))
-    result.append(('ACT', 1))
-    result.append(('AGA', 2))
-    result.append(('AGC', 1))
-    result.append(('AGG', 1))
-    result.append(('CCG', 1))
-    result.append(('CGG', 1))
-    result.append(('CTT', 2))
-    result.append(('GAA', 3))
-    result.append(('GAG', 1))
-    result.append(('GCT', 1))
-    result.append(('GGA', 2))
-    result.append(('TAC', 1))
-    result.append(('TAG', 1))
-    result.append(('TTA', 2))
+    result.append(("AAG", 2))
+    result.append(("ACT", 1))
+    result.append(("AGA", 2))
+    result.append(("AGC", 1))
+    result.append(("AGG", 1))
+    result.append(("CCG", 1))
+    result.append(("CGG", 1))
+    result.append(("CTT", 2))
+    result.append(("GAA", 3))
+    result.append(("GAG", 1))
+    result.append(("GCT", 1))
+    result.append(("GGA", 2))
+    result.append(("TAC", 1))
+    result.append(("TAG", 1))
+    result.append(("TTA", 2))
     assert get_3mer_usage_chart(s) == result
 
 
 # ------------------------------------------------------------------------------
+
 
 def read_column(file_name, column_number):
     """
@@ -294,7 +323,7 @@ def test_read_column():
 
     # we save this text to a temporary file
     file_name = tempfile.mkstemp()[1]
-    with open(file_name, 'w') as f:
+    with open(file_name, "w") as f:
         f.write(text)
 
     # and now we pass the file name to the function which will read the column
@@ -305,6 +334,7 @@ def test_read_column():
 
 
 # ------------------------------------------------------------------------------
+
 
 def character_statistics(file_name):
     """
@@ -362,12 +392,12 @@ Be all my sins remember'd."""
 
     # we save this text to a temporary file
     file_name = tempfile.mkstemp()[1]
-    with open(file_name, 'w') as f:
+    with open(file_name, "w") as f:
         f.write(text)
 
     # and now we pass the file name to the function which will get the stats
     (most_abundant, least_abundant) = character_statistics(file_name)
-    assert (most_abundant, least_abundant) == ('e', 'q')
+    assert (most_abundant, least_abundant) == ("e", "q")
 
     # we remove the temporary file
     os.unlink(file_name)
@@ -375,22 +405,24 @@ Be all my sins remember'd."""
 
 # ------------------------------------------------------------------------------
 
+
 def pythagorean_triples(n):
     """
     Returns list of all unique pythagorean triples
     (a, b, c) where a < b < c <= n.
     """
-    l = []
+    l = []  # noqa
     # loop over all a < b < c <= n
     for c in range(1, n + 1):
         for b in range(1, c):
             for a in range(1, b):
-                if a*a + b*b == c*c:
+                if a * a + b * b == c * c:
                     l.append((a, b, c))
     return l
 
 
 # ------------------------------------------------------------------------------
+
 
 def test_pythagorean_triples():
     pass  # so far we do not test anything, check also test coverage

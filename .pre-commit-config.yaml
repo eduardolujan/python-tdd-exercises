@@ -35,6 +35,7 @@ repos:
     rev: 1.7.0
     hooks:
     - id: bandit
+      args: [-s, "B101"]
 
 default_language_version:
     python: python3.9
