@@ -9,6 +9,8 @@ install:
 
 script:
   - py.test -vv exercises.py --cov exercises
+
+after_success:
   - coveralls
 
 notifications:

@@ -4,7 +4,7 @@
 
 [![Build Status](https://www.travis-ci.com/pecalleja/python-tdd-exercises.svg?branch=master)](https://travis-ci.com/pecalleja/python-tdd-exercises/builds)
 [![Coverage Status](https://coveralls.io/repos/github/pecalleja/python-tdd-exercises/badge.svg?branch=master)](https://coveralls.io/github/pecalleja/python-tdd-exercises?branch=master)
-After you fork, edit this `README.md` and rename "bast" to your GitHub username
+After you fork, edit this `README.md` and rename "pecalleja" to your GitHub username
 or namespace to make the badges point to your fork.
 
 
