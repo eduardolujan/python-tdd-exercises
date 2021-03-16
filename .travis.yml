@@ -5,7 +5,7 @@ python:
 
 install:
   - pip install pytest-cov
-  - pip install python-coveralls
+  - pip install coveralls
 
 script:
   - py.test -vv exercises.py --cov exercises
