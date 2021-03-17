@@ -107,12 +107,16 @@ def test_histogram():
 # ------------------------------------------------------------------------------
 
 
-def get_word_lengths(s):
+def get_word_lengths(text: str) -> list[int]:
     """
     Returns a list of integers representing
     the word lengths in string s.
     """
-    return None
+    words = text.split()
+    lengths = []
+    for word in words:
+        lengths.append(len(word))
+    return lengths
 
 
 def test_get_word_lengths():
@@ -123,12 +127,17 @@ def test_get_word_lengths():
 # ------------------------------------------------------------------------------
 
 
-def find_longest_word(s):
+def find_longest_word(text: str) -> str:
     """
     Returns the longest word in string s.
     In case there are several, return the first.
     """
-    return None
+    words = text.split()
+    longest_word = ""
+    for word in words:
+        if len(word) > len(longest_word):
+            longest_word = word
+    return longest_word
 
 
 def test_find_longest_word():
@@ -140,13 +149,18 @@ def test_find_longest_word():
 
 # ------------------------------------------------------------------------------
 
+dna_bases = {"a": "t", "c": "g", "t": "a", "g": "c"}
 
-def validate_dna(s):
+
+def validate_dna(dna: str) -> bool:
     """
     Return True if the DNA string only contains characters
     a, c, t, or g (lower or uppercase). False otherwise.
     """
-    return None
+    for element in dna:
+        if element.lower() not in dna_bases:
+            return False
+    return True
 
 
 def test_validate_dna():
@@ -158,13 +172,13 @@ def test_validate_dna():
 # ------------------------------------------------------------------------------
 
 
-def base_pair(c):
+def base_pair(element: str) -> str:
     """
     Return the corresponding character (lowercase)
     of the base pair. If the base is not recognized,
     return 'unknown'.
     """
-    return None
+    return dna_bases.get(element.lower(), "unknown")
 
 
 def test_base_pair():
@@ -183,12 +197,13 @@ def test_base_pair():
 # ------------------------------------------------------------------------------
 
 
-def transcribe_dna_to_rna(s):
+def transcribe_dna_to_rna(adn: str) -> str:
     """
     Return string s with each letter T replaced by U.
     Result is always uppercase.
     """
-    return None
+    upper_dna = adn.upper()
+    return upper_dna.replace("T", "U")
 
 
 def test_transcribe_dna_to_rna():
@@ -199,12 +214,15 @@ def test_transcribe_dna_to_rna():
 # ------------------------------------------------------------------------------
 
 
-def get_complement(s):
+def get_complement(adn: str) -> str:
     """
     Return the DNA complement in uppercase
     (A -> T, T-> A, C -> G, G-> C).
     """
-    return None
+    adn_complement = ""
+    for element in adn:
+        adn_complement += dna_bases.get(element.lower()).upper()
+    return adn_complement
 
 
 def test_get_complement():
@@ -215,12 +233,12 @@ def test_get_complement():
 # ------------------------------------------------------------------------------
 
 
-def get_reverse_complement(s):
+def get_reverse_complement(adn: str) -> str:
     """
     Return the reverse complement of string s
     (complement reversed in order).
     """
-    return None
+    return get_complement(adn)[::-1]
 
 
 def test_get_reverse_complement():
@@ -231,11 +249,11 @@ def test_get_reverse_complement():
 # ------------------------------------------------------------------------------
 
 
-def remove_substring(substring, string):
+def remove_substring(substring: str, string: str) -> str:
     """
     Returns string with all occurrences of substring removed.
     """
-    return None
+    return string.replace(substring, "")
 
 
 def test_remove_substring():
@@ -248,13 +266,19 @@ def test_remove_substring():
 # ------------------------------------------------------------------------------
 
 
-def get_position_indices(triplet, dna):
+def get_position_indices(triplet: str, dna: str) -> list[int]:
     """
     Returns list of position indices for a specific triplet (3-mer)
     in a DNA sequence. We start counting from 0
     and jump by 3 characters from one position to the next.
     """
-    return None
+    index = 0
+    positions = []
+    while index <= len(dna):
+        if dna[index : index + 3] == triplet:  # noqa
+            positions.append(int(index / 3))
+        index += 3
+    return positions
 
 
 def test_get_position_indices():
@@ -265,7 +289,7 @@ def test_get_position_indices():
 # ------------------------------------------------------------------------------
 
 
-def get_3mer_usage_chart(s):
+def get_3mer_usage_chart(dna: str) -> list[tuple]:
     """
     This routine implements a 'sliding window'
     and extracts all possible consecutive 3-mers.
@@ -274,12 +298,19 @@ def get_3mer_usage_chart(s):
     The list is alphabetically sorted by the name
     of the 3-mer.
     """
-    return None
+    index = 0
+    result = {}
+    while index <= len(dna) - 3:
+        mers3 = dna[index : index + 3]  # noqa
+        result[mers3] = result.get(mers3, 0) + 1
+        index += 1
+    sorted(result)
+    return sorted([(key, value) for key, value in result.items()])
 
 
 def test_get_3mer_usage_chart():
-    s = "CCGGAAGAGCTTACTTAGGAAGAA"
     result = []
+    s = "CCGGAAGAGCTTACTTAGGAAGAA"
     result.append(("AAG", 2))
     result.append(("ACT", 1))
     result.append(("AGA", 2))
@@ -297,16 +328,28 @@ def test_get_3mer_usage_chart():
     result.append(("TTA", 2))
     assert get_3mer_usage_chart(s) == result
 
+    s = "CCG"
+    result = []  # noqa
+    result.append(("CCG", 1))
+    assert get_3mer_usage_chart(s) == result
+
+    assert get_3mer_usage_chart("") == []
+
 
 # ------------------------------------------------------------------------------
 
 
-def read_column(file_name, column_number):
+def read_column(file_name: str, column_number: int) -> list[float]:
     """
     Reads column column_number from file file_name
     and returns the values as floats in a list.
     """
-    return None
+    elements = []
+    with open(file_name, "r") as f:
+        for line in f.readlines():
+            columns = line.split()
+            elements.append(float(columns[column_number - 1]))
+    return elements
 
 
 def test_read_column():
@@ -336,7 +379,7 @@ def test_read_column():
 # ------------------------------------------------------------------------------
 
 
-def character_statistics(file_name):
+def character_statistics(file_name: str) -> tuple[str, str]:
     """
     Reads text from file file_name, then
     lowercases the text, and then returns
@@ -345,7 +388,23 @@ def character_statistics(file_name):
     Use the isalpha() method to figure out
     whether the character is in the alphabet.
     """
-    return None
+    from collections import Counter
+
+    most_common = ""
+    least_common = ""
+    with open(file_name, "r") as f:
+        data = f.read().replace("\n", "").lower()
+        result = Counter(data)
+        stats = result.most_common()
+        for item in stats:
+            if item[0].isalpha():
+                most_common = item[0]
+                break
+        for item in stats[::-1]:
+            if item[0].isalpha():
+                least_common = item[0]
+                break
+    return most_common, least_common
 
 
 def test_character_statistics():
@@ -406,23 +465,23 @@ Be all my sins remember'd."""
 # ------------------------------------------------------------------------------
 
 
-def pythagorean_triples(n):
+def pythagorean_triples(number: int) -> list[tuple]:
     """
     Returns list of all unique pythagorean triples
     (a, b, c) where a < b < c <= n.
     """
-    l = []  # noqa
+    result = []
     # loop over all a < b < c <= n
-    for c in range(1, n + 1):
+    for c in range(1, number + 1):
         for b in range(1, c):
             for a in range(1, b):
                 if a * a + b * b == c * c:
-                    l.append((a, b, c))
-    return l
+                    result.append((a, b, c))
+    return result
 
 
 # ------------------------------------------------------------------------------
 
 
 def test_pythagorean_triples():
-    pass  # so far we do not test anything, check also test coverage
+    assert pythagorean_triples(5) == [(3, 4, 5)]
