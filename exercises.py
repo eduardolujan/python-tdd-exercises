@@ -103,6 +103,8 @@ def histogram(integers: list[int]) -> str:
 def test_histogram():
     assert histogram([2, 5, 1]) == "##\n#####\n#"
 
+    assert histogram([]) == ""
+
 
 # ------------------------------------------------------------------------------
 
