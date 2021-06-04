@@ -9,7 +9,7 @@ install:
 
 script:
   - py.test -vv exercises.py --cov exercises
-
+  - py.test -vv
 after_success:
   - coveralls
 
