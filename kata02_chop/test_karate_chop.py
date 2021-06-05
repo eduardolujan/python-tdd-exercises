@@ -13,6 +13,16 @@ def test_found_target_simple():
     assert 0 == chop(1, [1])
 
 
+def test_found_target_two_elements():
+    assert 0 == chop(1, [1, 2])
+    assert 1 == chop(2, [1, 2])
+
+
+def test_not_found_target_two_elements():
+    assert -1 == chop(0, [1, 2])
+    assert -1 == chop(3, [1, 2])
+
+
 def test_found_element_full_array():
     assert 0 == chop(1, [1, 3, 5])
     assert 1 == chop(3, [1, 3, 5])
