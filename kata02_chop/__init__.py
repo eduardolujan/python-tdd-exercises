@@ -11,24 +11,11 @@ def chop(target: int, elements: list[int], index: int = 0) -> int:
 
     :return: -1 if element not found or the index of the first occurrence
     """
-    if not elements:
-        return -1
-    if len(elements) == 1:
-        if elements[0] != target:
+    last = None
+    for key, value in enumerate(elements):
+        if last and last > value:
             return -1
-        else:
-            return index
-
-    if elements[0] == target:
-        return index
-    if elements[-1] == target:
-        return len(elements) - 1
-
-    elements_count = len(elements)
-    center = elements_count // 2
-
-    if target <= elements[center - 1]:
-        return chop(target, elements[0:center], index)
-    if target >= elements[center]:
-        return chop(target, elements[center:elements_count], center)
+        if value == target:
+            return key
+        last = value
     return -1
