@@ -31,3 +31,4 @@ def chop(target: int, elements: list[int], index: int = 0) -> int:
         return chop(target, elements[0:center], index)
     if target >= elements[center]:
         return chop(target, elements[center:elements_count], center)
+    return -1

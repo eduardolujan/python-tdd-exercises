@@ -34,16 +34,16 @@ def test_found_element_full_array():
 
 
 def test_not_found_full_array():
-    assert -1, chop(0, [1, 3, 5])
-    assert -1, chop(2, [1, 3, 5])
-    assert -1, chop(4, [1, 3, 5])
-    assert -1, chop(6, [1, 3, 5])
-    assert -1, chop(0, [1, 3, 5, 7])
-    assert -1, chop(2, [1, 3, 5, 7])
-    assert -1, chop(4, [1, 3, 5, 7])
-    assert -1, chop(6, [1, 3, 5, 7])
-    assert -1, chop(8, [1, 3, 5, 7])
+    assert -1 == chop(0, [1, 3, 5])
+    assert -1 == chop(2, [1, 3, 5])
+    assert -1 == chop(4, [1, 3, 5])
+    assert -1 == chop(6, [1, 3, 5])
+    assert -1 == chop(0, [1, 3, 5, 7])
+    assert -1 == chop(2, [1, 3, 5, 7])
+    assert -1 == chop(4, [1, 3, 5, 7])
+    assert -1 == chop(6, [1, 3, 5, 7])
+    assert -1 == chop(8, [1, 3, 5, 7])
 
 
 def test_not_found_in_not_sorted_array():
-    assert -1, chop(2, [1, 3, 5, 2])
+    assert -1 == chop(2, [1, 3, 2, 4])
