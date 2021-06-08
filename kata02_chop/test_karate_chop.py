@@ -1,4 +1,4 @@
-from kata02_chop import chop
+from . import chop
 
 
 def test_empty_array():
@@ -46,4 +46,4 @@ def test_not_found_full_array():
 
 
 def test_not_found_in_not_sorted_array():
-    assert -1 == chop(2, [1, 3, 2, 4])
+    assert 1 == chop(2, [1, 3, 2, 4])
